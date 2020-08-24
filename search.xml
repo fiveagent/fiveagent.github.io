@@ -25,9 +25,62 @@
       </tags>
   </entry>
   <entry>
+    <title>kali+docker+vulhub快速安装指南</title>
+    <url>/2020/08/21/kali+docker+vulhub%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><p><strong>Kali 自带源安装：</strong></p>
+<p>​    root@kali:~# apt-get update &amp;&amp; apt-get install docker.io</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821152437159.png" alt="image-20200821152437159"></p>
+<p><strong>查看版本：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821153208933.png" alt="image-20200821153208933"></p>
+<p><strong>设置开机自启：</strong></p>
+<p>root@kali:~# service docker start</p>
+<p>root@kali:~# update-rc.d docker enable</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821153009107.png" alt="image-20200821153009107"></p>
+<p><strong>安装pip（python包管理工具）：</strong><br> root@kali:~#curl -s <a href="https://bootstrap.pypa.io/get-pip.py|">https://bootstrap.pypa.io/get-pip.py|</a> python3</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821154310795.png" alt="image-20200821154310795"></p>
+<p><strong>安装docker-compose：</strong></p>
+<p>Compose 是 Docker 容器进行编排的工具，定义和运行多容器的应用，可以一条命令启动多个容器，使用Docker Compose不再需要使用shell脚本来启动容器。</p>
+<p>root@kali:~# pip install docker-compose</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821154511725.png" alt="image-20200821154511725"></p>
+<h1 id="下载vulhub"><a href="#下载vulhub" class="headerlink" title="下载vulhub"></a>下载vulhub</h1><p>Vulhub是一个面向大众的开源漏洞靶场，无需docker知识，简单执行两条命令即可编译、运行一个完整的漏洞靶场镜像。旨在让漏洞复现变得更加简单，让安全研究者更加专注于漏洞原理本身。</p>
+<p>vulhub网站：<a href="http://vulhub.org/">http://vulhub.org/</a></p>
+<p>仓库地址：git clone <a href="https://github.com/vulhub/vulhub.git">https://github.com/vulhub/vulhub.git</a></p>
+<p>直接下载地址：<a href="https://github.com/vulhub/vulhub/archive/master.zip">https://github.com/vulhub/vulhub/archive/master.zip</a></p>
+<p>root@kali:~# git clone <a href="https://github.com/phith0n/vulhub.git">https://github.com/phith0n/vulhub.git</a></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821180109818.png" alt="image-20200821180109818"></p>
+<p><strong>查看vulhub</strong>：</p>
+<p>进入vulhub目录，并查看：</p>
+<p>root@kali:<del># cd vulhub<br>root@kali:</del>/vulhub# ls</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821192229291.png" alt="image-20200821192229291"></p>
+<p><strong>选择要测试的项目，并编译靶场：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821194448720.png" alt="image-20200821194448720"></p>
+<p><strong>启动环境：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821194532763.png" alt="image-20200821194532763"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821194641016.png" alt="image-20200821194641016"></p>
+<p><strong>测试环境：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821194951964.png" alt="image-20200821194951964"></p>
+<p>换一个工具再试试：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821195548045.png" alt="image-20200821195548045"></p>
+<p><strong>删除环境：</strong></p>
+<p>测试完毕之后，使用docker-compose down 即可结束服务，使环境变为初始状态。</p>
+<p>root@kali:~/vulhub/struts2/s2-016# docker-compose down</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821195912387.png" alt="image-20200821195912387"></p>
+<h1 id="本机访问docker"><a href="#本机访问docker" class="headerlink" title="本机访问docker"></a>本机访问docker</h1><p><strong>配置桥接</strong>，因为需要同一网段才能访问，别的模式太麻烦了，不建议。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821202446584.png" alt="image-20200821202446584"></p>
+<p><strong>本地访问：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:\Users\旭东\AppData\Roaming\Typora\typora-user-images\image-20200821202634653.png" alt="image-20200821202634653"></p>
+]]></content>
+      <categories>
+        <category>vulhub</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>github+hexo+butterfly的搭建部署及美化</title>
     <url>/2020/08/19/hexo+butterfly%E5%AE%89%E8%A3%85%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="搭建github博客"><a href="#搭建github博客" class="headerlink" title="搭建github博客"></a>搭建github博客</h1><h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>新建一个名为<code>你的用户名.github.io</code>的仓库，比如说，如果你的github用户名是hugang-first，那么你就新建<code>hugang-first.github.io</code>的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://hugang-first.github.io/">http://hugang-first.github.io</a> 了，是不是很方便？</p>
+    <content><![CDATA[<h1 id="搭建github博客"><a href="#搭建github博客" class="headerlink" title="搭建github博客"></a>搭建github博客</h1><h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>新建一个名为<code>你的用户名.github.io</code>的仓库，比如说，如果你的github用户名是fiveagent，那么你就新建<code>fiveagent.github.io</code>的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://fiveagent.github.io/">http://fiveagent.github.io</a> 了，是不是很方便？</p>
 <p>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。</p>
 <p>几个注意的地方：</p>
 <ol>
@@ -116,7 +169,7 @@
 <p>首先进入自己的仓库，点击usessh，将ssh地址复制到repository：</p>
 <p><img src= "/img/loading.gif" data-lazy-src="C:\Users\hugan\AppData\Roaming\Typora\typora-user-images\image-20200809185405011.png" alt="image-20200809185405011"></p>
 <p><img src= "/img/loading.gif" data-lazy-src="C:\Users\hugan\AppData\Roaming\Typora\typora-user-images\image-20200809185444230.png" alt="image-20200809185444230"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:hugang-first&#x2F;hugang-first.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:fiveagent&#x2F;fiveagent.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 <h1 id="主题的安装和升级"><a href="#主题的安装和升级" class="headerlink" title="主题的安装和升级"></a>主题的安装和升级</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>在你博客的根目录里</p>
 <p>bash</p>
@@ -730,7 +783,7 @@
         <category>主题优化</category>
       </categories>
       <tags>
-        <tag>butterfly主题</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
 </search>
