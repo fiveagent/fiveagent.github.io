@@ -78,7 +78,7 @@
       </tags>
   </entry>
   <entry>
-    <title>github+hexo+butterfly的搭建部署及美化</title>
+    <title>github+hexo+butterfly搭建及美化</title>
     <url>/2020/08/19/hexo+butterfly%E5%AE%89%E8%A3%85%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h1 id="搭建github博客"><a href="#搭建github博客" class="headerlink" title="搭建github博客"></a>搭建github博客</h1><h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>新建一个名为<code>你的用户名.github.io</code>的仓库，比如说，如果你的github用户名是fiveagent，那么你就新建<code>fiveagent.github.io</code>的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://fiveagent.github.io/">http://fiveagent.github.io</a> 了，是不是很方便？</p>
 <p>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。</p>
